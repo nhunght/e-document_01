@@ -27,6 +27,8 @@ class User < ApplicationRecord
     foreign_key: :guest_id, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :buycoins
+  has_many :read_documents, through: :reads, source: :document
+
   scope :email_admin, -> () {
     self.select(:id, :email).where(role: :admin)
   }
